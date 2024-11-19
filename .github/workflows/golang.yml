@@ -1,0 +1,46 @@
+name: Golang
+
+on:
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
+
+env:
+    CARGO_TERM_COLOR: always
+    GO_VERSION: stable
+    GOLANGCI_LINT_VERSION: v1.60
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup Go
+              uses: actions/setup-go@v5
+              with:
+                go-version: ${{ env.GO_VERSION }}
+            - name: Set up gotestfmt
+              run: go install github.com/gotesttools/gotestfmt/v2/cmd/gotestfmt@latest
+            # - name: Install dependencies
+            #   run: go get .
+            - name: golangci-lint
+              uses: golangci/golangci-lint-action@v6
+              with:
+                version: ${{ env.GOLANGCI_LINT_VERSION }}
+            - name: Build
+              run: go build -v ./...
+            - name: Test with the Go CLI
+              run: |
+                set -euo pipefail
+                go test -json -v ./... 2>&1 | tee /tmp/gotest.log | gotestfmt
+            - name: Upload test log
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                name: test-log
+                path: /tmp/gotest.log
+                if-no-files-found: error
+            - name: Benchmarks
+              run: go test ./... -bench=. -run=^#

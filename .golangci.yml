@@ -1,0 +1,3 @@
+output:
+    formats:
+        - format: colored-line-number

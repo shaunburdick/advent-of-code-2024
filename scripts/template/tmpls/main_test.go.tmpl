@@ -1,0 +1,73 @@
+package main
+
+import (
+	"testing"
+)
+
+var example1 = ``
+
+func Test_day{{ .Day }}_part1(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  int
+	}{
+		{
+			name:  "example",
+			input: example1,
+			want:  0,
+		},
+		{
+			name:  "actual",
+			input: input,
+			want:  0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := part1(tt.input); got != tt.want {
+				t.Errorf("part1() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Benchmark_day{{ .Day }}_part1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		part1(input)
+	}
+}
+
+var example2 = ``
+
+func Test_day{{ .Day }}_part2(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  int
+	}{
+		{
+			name:  "example",
+			input: example2,
+			want:  0,
+		},
+		{
+			name:  "actual",
+			input: input,
+			want:  0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := part2(tt.input); got != tt.want {
+				t.Errorf("part2() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Benchmark_day{{ .Day }}_part2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		part2(input)
+	}
+}
