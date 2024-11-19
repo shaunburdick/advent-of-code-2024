@@ -32,3 +32,7 @@ To run linting for an individual day X, run `just lint X` or to run all linting 
 ## Running
 
 To run a solution, run `just run <day> <part>` where day is the day number and part is the part number. Example: `just run 1 1` to run day 1, part 1
+
+## Benchmarks
+
+To run benchmarks for an individual day X, run `just bench X` or to run all benchmarks run `just bench-all`
