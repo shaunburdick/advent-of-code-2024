@@ -13,7 +13,7 @@ Each day will be setup as a separate folder.
 
 To setup your environment:
 
-1. Install [Golang](https://go.dev/dl/) Golang (or `brew install golang`)
+1. Install [Golang](https://go.dev/dl/) (or `brew install golang`)
 2. Install [Golang CI Lint](https://github.com/golangci/golangci-lint): `brew install golangci-lint`
 3. Install [Just](https://github.com/casey/just): `brew install just`
 4. Install [gotestfmt](https://github.com/GoTestTools/gotestfmt): `go install github.com/gotesttools/gotestfmt/v2/cmd/gotestfmt@latest`
