@@ -43,4 +43,4 @@ jobs:
                 path: /tmp/gotest.log
                 if-no-files-found: error
             - name: Benchmarks
-              run: go test ./... -bench=. -run=^#
+              run: go test ./... -bench=. -run=^# -benchmem
