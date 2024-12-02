@@ -7,7 +7,8 @@ An attempt at [Advent of Code](https://adventofcode.com/2024) using [Go](https:/
 Each day will be setup as a separate folder.
 
 -   [Day 0](/day-0/) - Trebuchet?! (2023 Day 1)
--   [Day 1](/day-1/) - Historian Hysteria (2024 Day 1)
+-   [Day 1](/day-1/) - Historian Hysteria
+-   [Day 2](/day-2/) - Red-Nosed Reports
 
 ## Environment Setup
 
