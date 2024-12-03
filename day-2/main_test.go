@@ -2,7 +2,16 @@ package main
 
 import (
 	"testing"
+
+	file "github.com/shaunburdick/advent-of-code-2024/lib"
 )
+
+type TestDeclaration struct {
+	name  string
+	input string
+	want  int
+	run   bool
+}
 
 var example1 = `7 6 4 2 1
 1 2 7 8 9
@@ -12,20 +21,18 @@ var example1 = `7 6 4 2 1
 1 3 6 7 9`
 
 func Test_day2_part1(t *testing.T) {
-	tests := []struct {
-		name  string
-		input string
-		want  int
-	}{
+	tests := []TestDeclaration{
 		{
 			name:  "example",
 			input: example1,
 			want:  2,
+			run:   true,
 		},
 		{
 			name:  "actual",
 			input: input,
 			want:  356,
+			run:   file.ExistsRelativeFile("input.txt"),
 		},
 	}
 	for _, tt := range tests {
@@ -39,7 +46,7 @@ func Test_day2_part1(t *testing.T) {
 
 func Benchmark_day2_part1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		part1(input)
+		part1(example1)
 	}
 }
 
@@ -51,20 +58,18 @@ var example2 = `7 6 4 2 1
 1 3 6 7 9`
 
 func Test_day2_part2(t *testing.T) {
-	tests := []struct {
-		name  string
-		input string
-		want  int
-	}{
+	tests := []TestDeclaration{
 		{
 			name:  "example",
 			input: example2,
 			want:  4,
+			run:   true,
 		},
 		{
 			name:  "actual",
 			input: input,
 			want:  413,
+			run:   file.ExistsRelativeFile("input.txt"),
 		},
 	}
 	for _, tt := range tests {
@@ -104,6 +109,6 @@ func Test_day2_outliers(t *testing.T) {
 
 func Benchmark_day2_part2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		part2(input)
+		part2(example2)
 	}
 }

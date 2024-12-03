@@ -1,24 +1,27 @@
 package main
 
 import (
-	_ "embed"
 	"flag"
 	"fmt"
 	"log"
 	"sort"
 	"strconv"
 	"strings"
+
+	file "github.com/shaunburdick/advent-of-code-2024/lib"
 )
 
-//go:embed input.txt
 var input string
 
 func init() {
 	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
+	// do this in init (not main) so test file has same input
+	inputFile, err := file.LoadRelativeFile("input.txt")
+	if err != nil {
+		log.Println(err)
 	}
+
+	input = strings.TrimRight(inputFile, "\n")
 }
 
 func main() {
