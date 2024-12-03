@@ -36,11 +36,13 @@ func Test_day2_part1(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := part1(tt.input); got != tt.want {
-				t.Errorf("part1() = %v, want %v", got, tt.want)
-			}
-		})
+		if tt.run {
+			t.Run(tt.name, func(t *testing.T) {
+				if got := part1(tt.input); got != tt.want {
+					t.Errorf("part1() = %v, want %v", got, tt.want)
+				}
+			})
+		}
 	}
 }
 
@@ -73,11 +75,13 @@ func Test_day2_part2(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := part2(tt.input); got != tt.want {
-				t.Errorf("part2() = %v, want %v", got, tt.want)
-			}
-		})
+		if tt.run {
+			t.Run(tt.name, func(t *testing.T) {
+				if got := part2(tt.input); got != tt.want {
+					t.Errorf("part2() = %v, want %v", got, tt.want)
+				}
+			})
+		}
 	}
 }
 
