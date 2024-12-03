@@ -9,6 +9,7 @@ Each day will be setup as a separate folder.
 -   [Day 0](/day-0/) - Trebuchet?! (2023 Day 1)
 -   [Day 1](/day-1/) - Historian Hysteria
 -   [Day 2](/day-2/) - Red-Nosed Reports
+-   [Day 3](/day-3/) - Mull It Over
 
 ## Environment Setup
 
