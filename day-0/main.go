@@ -62,22 +62,22 @@ func part1(input string) int {
 	return total
 }
 
+var prefixes map[string]int = map[string]int{
+	"one":   1,
+	"two":   2,
+	"three": 3,
+	"four":  4,
+	"five":  5,
+	"six":   6,
+	"seven": 7,
+	"eight": 8,
+	"nine":  9,
+	"zero":  0,
+}
+
 func part2(input string) int {
 	parsed := parseInput(input)
 	total := 0
-
-	prefixes := map[string]int{
-		"one":   1,
-		"two":   2,
-		"three": 3,
-		"four":  4,
-		"five":  5,
-		"six":   6,
-		"seven": 7,
-		"eight": 8,
-		"nine":  9,
-		"zero":  0,
-	}
 
 	for _, line := range parsed {
 		first := -1
@@ -93,15 +93,23 @@ func part2(input string) int {
 				}
 				last = num
 			} else {
-				for prefix, val := range prefixes {
-					if checkPrefix(line[i:], prefix) {
+				// the number names range from 3 to 5 in length so we just need
+				// to check those three lengths in the map
+				for j := 3; j < 6; j++ {
+					end := i + j
+					// If we are over the end of the string, no point in checking
+					if end > len(line) {
+						break
+					}
+					val, ok := prefixes[line[i:end]]
+					if ok {
 						if first == -1 {
 							first = val
 						}
 						last = val
 
 						// jump forward to the last letter of the prefix
-						i += len(prefix) - 2
+						i += j - 2
 						break
 					}
 				}
@@ -116,11 +124,4 @@ func part2(input string) int {
 
 func parseInput(input string) (ans []string) {
 	return strings.Split(input, "\n")
-}
-
-func checkPrefix(str string, prefix string) bool {
-	if len(str) < len(prefix) {
-		return false
-	}
-	return str[:len(prefix)] == prefix
 }
