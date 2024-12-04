@@ -37,17 +37,17 @@ func main() {
 	}
 }
 
-const MAS = "MAS"
-const XMAS = "X" + MAS
+const XMAS = "XMAS"
 
 func part1(input string) int {
 	parsed := parseInput(input)
+	grid := Grid{parsed}
 	foundWords := 0
 	// start traversing the grid
 	for y, row := range parsed {
 		for x := range row {
 			coord := Coords{x, y}
-			foundWords += xmasSearch(parsed, "", coord, AllDirections)
+			foundWords += xmasSearch(grid, "", coord, AllDirections)
 		}
 	}
 
@@ -91,6 +91,10 @@ type Grid struct {
 
 func (g Grid) CharAt(c Coords) rune {
 	return rune(g.Data[c.y][c.x])
+}
+
+func (g Grid) InBounds(c Coords) bool {
+	return c.x >= 0 && c.y >= 0 && c.y < len(g.Data) && c.x < len(g.Data[c.y])
 }
 
 type Coords struct {
@@ -161,9 +165,9 @@ func (c Coords) Direction(d Direction) Coords {
 	}
 }
 
-func xmasSearch(grid []string, currentWord string, coords Coords, directions []Direction) int {
+func xmasSearch(grid Grid, currentWord string, coords Coords, directions []Direction) int {
 	foundWords := 0
-	newWord := currentWord + string(grid[coords.y][coords.x])
+	newWord := currentWord + string(grid.CharAt(coords))
 	if newWord == XMAS {
 		// we match!
 		return 1
@@ -175,7 +179,7 @@ func xmasSearch(grid []string, currentWord string, coords Coords, directions []D
 		for _, direction := range directions {
 			newCoord := coords.Direction(direction)
 			// check for bounds
-			if newCoord.x >= 0 && newCoord.y >= 0 && newCoord.y < len(grid) && newCoord.x < len(grid[newCoord.y]) {
+			if grid.InBounds(newCoord) {
 				foundWords += xmasSearch(grid, newWord, newCoord, []Direction{direction})
 			}
 		}
