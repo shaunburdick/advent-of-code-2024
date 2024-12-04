@@ -10,6 +10,7 @@ Each day will be setup as a separate folder.
 -   [Day 1](/day-1/) - Historian Hysteria
 -   [Day 2](/day-2/) - Red-Nosed Reports
 -   [Day 3](/day-3/) - Mull It Over
+-   [Day 4](/day-4/) - Ceres Search
 
 ## Environment Setup
 
