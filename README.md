@@ -12,6 +12,7 @@ Each day will be setup as a separate folder.
 -   [Day 3](/day-3/) - Mull It Over
 -   [Day 4](/day-4/) - Ceres Search
 -   [Day 5](/day-5/) - Print Queue
+-   [Day 6](/day-6/) - Guard Gallivant
 
 ## Environment Setup
 
