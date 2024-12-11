@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	file "github.com/shaunburdick/advent-of-code-2024/lib"
+	file "github.com/shaunburdick/advent-of-code-2024/lib/file"
 )
 
 var input string
