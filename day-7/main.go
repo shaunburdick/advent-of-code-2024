@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"math"
 	"slices"
 	"strconv"
 	"strings"
@@ -58,9 +59,18 @@ func part1(input string) int64 {
 
 func part2(input string) int64 {
 	parsed := parseInput(input)
-	_ = parsed
+	var total int64
+	total = 0
 
-	return 0
+	for _, calibration := range parsed {
+		testValue, numbers := ParseCalibration(calibration)
+		iter := IterateOperatorsWithConcat(numbers[0], numbers[1:])
+		if slices.Contains(iter, testValue) {
+			total += testValue
+		}
+	}
+
+	return total
 }
 
 func IterateOperators(carry int64, numbers []int64) (results []int64) {
@@ -76,6 +86,27 @@ func IterateOperators(carry int64, numbers []int64) (results []int64) {
 
 		results = append(results, nextAdd...)
 		results = append(results, nextMul...)
+	}
+
+	return results
+}
+
+func IterateOperatorsWithConcat(carry int64, numbers []int64) (results []int64) {
+	addResult := ApplyOperator(Add, carry, numbers[0])
+	mulResult := ApplyOperator(Multiply, carry, numbers[0])
+	conResult := ApplyOperator(Concat, carry, numbers[0])
+
+	// base case
+	if len(numbers) == 1 {
+		results = append(results, addResult, mulResult, conResult)
+	} else {
+		nextAdd := IterateOperatorsWithConcat(addResult, numbers[1:])
+		nextMul := IterateOperatorsWithConcat(mulResult, numbers[1:])
+		nextCon := IterateOperatorsWithConcat(conResult, numbers[1:])
+
+		results = append(results, nextAdd...)
+		results = append(results, nextMul...)
+		results = append(results, nextCon...)
 	}
 
 	return results
@@ -106,6 +137,7 @@ type Operator int
 const (
 	Add Operator = iota
 	Multiply
+	Concat
 )
 
 func ApplyOperator(op Operator, a int64, b int64) int64 {
@@ -114,6 +146,10 @@ func ApplyOperator(op Operator, a int64, b int64) int64 {
 		return a + b
 	case Multiply:
 		return a * b
+	case Concat:
+		digitsB := int(math.Log10(float64(b))) + 1
+		shiftedA := (a * int64(math.Pow10(digitsB)))
+		return shiftedA + b
 	default:
 		panic("Unknown Operator")
 	}

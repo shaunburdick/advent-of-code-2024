@@ -70,13 +70,13 @@ func Test_day7_part2(t *testing.T) {
 		{
 			name:  "example",
 			input: example2,
-			want:  0,
+			want:  11387,
 			run:   true,
 		},
 		{
 			name:  "actual",
 			input: input,
-			want:  0,
+			want:  92148721834692,
 			run:   file.ExistsRelativeFile("input.txt"),
 		},
 	}
