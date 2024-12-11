@@ -13,6 +13,7 @@ Each day will be setup as a separate folder.
 -   [Day 4](/day-4/) - Ceres Search
 -   [Day 5](/day-5/) - Print Queue
 -   [Day 6](/day-6/) - Guard Gallivant
+-   [Day 7](/day-7/) - Bridge Repair
 
 ## Environment Setup
 
