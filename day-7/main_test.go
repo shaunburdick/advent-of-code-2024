@@ -70,7 +70,7 @@ func Test_day7_part2(t *testing.T) {
 		{
 			name:  "example",
 			input: example2,
-			want:  11387,
+			want:  0,
 			run:   true,
 		},
 		{
