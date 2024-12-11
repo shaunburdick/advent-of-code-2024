@@ -88,9 +88,54 @@ func UniqueNodes(g grid.Grid) map[rune][]grid.Coords {
 
 func part2(input string) int {
 	parsed := parseInput(input)
-	_ = parsed
+	antinodes := make(map[string]struct{})
+	antennaMap := grid.Grid{Data: parsed}
+	nodes := UniqueNodes(antennaMap)
 
-	return 0
+	for _, coords := range nodes {
+		// if there are more than one instance of the node
+		if len(coords) > 1 {
+			for i, coordA := range coords {
+				// apply to every other coord
+				for _, coordB := range coords[i+1:] {
+					// add the antenna themselves
+					antinodes[coordA.String()] = struct{}{}
+					antinodes[coordB.String()] = struct{}{}
+
+					diff := []int{coordA.X - coordB.X, coordA.Y - coordB.Y}
+					mul := 1
+					for {
+						dir1InBounds := true
+						dir2InBounds := true
+						dir1 := grid.Coords{X: coordB.X + diff[0]*mul, Y: coordB.Y + diff[1]*mul}
+						// inverse
+						dir2 := grid.Coords{X: coordB.X + diff[0]*mul*-1, Y: coordB.Y + diff[1]*mul*-1}
+
+						if antennaMap.InBounds(dir1) {
+							antinodes[dir1.String()] = struct{}{}
+						} else {
+							dir1InBounds = false
+						}
+
+						if antennaMap.InBounds(dir2) {
+							antinodes[dir2.String()] = struct{}{}
+						} else {
+							dir2InBounds = false
+						}
+
+						if !dir1InBounds && !dir2InBounds {
+							break
+						} else {
+							mul++
+						}
+					}
+
+				}
+			}
+		}
+	}
+
+	return len(antinodes)
 }
 
 func parseInput(input string) (ans []string) {

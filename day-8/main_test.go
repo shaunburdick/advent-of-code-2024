@@ -37,7 +37,7 @@ func Test_day8_part1(t *testing.T) {
 		{
 			name:  "actual",
 			input: input,
-			want:  0,
+			want:  327,
 			run:   file.ExistsRelativeFile("input.txt"),
 		},
 	}
@@ -58,20 +58,31 @@ func Benchmark_day8_part1(b *testing.B) {
 	}
 }
 
-var example2 = ``
+var example2 = `............
+........0...
+.....0......
+.......0....
+....0.......
+......A.....
+............
+............
+........A...
+.........A..
+............
+............`
 
 func Test_day8_part2(t *testing.T) {
 	tests := []TestDeclaration{
 		{
 			name:  "example",
 			input: example2,
-			want:  0,
+			want:  34,
 			run:   true,
 		},
 		{
 			name:  "actual",
 			input: input,
-			want:  0,
+			want:  1233,
 			run:   file.ExistsRelativeFile("input.txt"),
 		},
 	}
