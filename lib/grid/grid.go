@@ -10,17 +10,17 @@ type Grid struct {
 
 // Returns the rune at the given coordinates
 func (g Grid) CharAt(c Coords) rune {
-	return rune(g.Data[c.y][c.x])
+	return rune(g.Data[c.Y][c.X])
 }
 
 // Updates the grid, setting the char at the coords
 func (g Grid) SetCharAt(c Coords, char string) {
-	g.Data[c.y] = g.Data[c.y][:c.x] + char + g.Data[c.y][c.x+1:]
+	g.Data[c.Y] = g.Data[c.Y][:c.X] + char + g.Data[c.Y][c.X+1:]
 }
 
 // Checks if a set of Coords is on the grid
 func (g Grid) InBounds(c Coords) bool {
-	return c.x >= 0 && c.y >= 0 && c.y < len(g.Data) && c.x < len(g.Data[c.y])
+	return c.X >= 0 && c.Y >= 0 && c.Y < len(g.Data) && c.X < len(g.Data[c.Y])
 }
 
 // Returns a list of Coords where the char is found
@@ -39,8 +39,8 @@ func (g Grid) FindChar(char rune) []Coords {
 }
 
 type Coords struct {
-	x int
-	y int
+	X int
+	Y int
 }
 
 type Direction int
@@ -71,26 +71,26 @@ var AllDirections []Direction = []Direction{
 func (c Coords) Next(d Direction) Coords {
 	switch d {
 	case NorthWest:
-		return Coords{x: c.x - 1, y: c.y - 1}
+		return Coords{X: c.X - 1, Y: c.Y - 1}
 	case North:
-		return Coords{x: c.x, y: c.y - 1}
+		return Coords{X: c.X, Y: c.Y - 1}
 	case NorthEast:
-		return Coords{x: c.x + 1, y: c.y - 1}
+		return Coords{X: c.X + 1, Y: c.Y - 1}
 	case West:
-		return Coords{x: c.x - 1, y: c.y}
+		return Coords{X: c.X - 1, Y: c.Y}
 	case East:
-		return Coords{x: c.x + 1, y: c.y}
+		return Coords{X: c.X + 1, Y: c.Y}
 	case SouthWest:
-		return Coords{x: c.x - 1, y: c.y + 1}
+		return Coords{X: c.X - 1, Y: c.Y + 1}
 	case South:
-		return Coords{x: c.x, y: c.y + 1}
+		return Coords{X: c.X, Y: c.Y + 1}
 	case SouthEast:
-		return Coords{x: c.x + 1, y: c.y + 1}
+		return Coords{X: c.X + 1, Y: c.Y + 1}
 	default:
 		panic("Unknown Direction!")
 	}
 }
 
 func (c Coords) String() string {
-	return strconv.Itoa(c.x) + "-" + strconv.Itoa(c.y)
+	return strconv.Itoa(c.X) + "-" + strconv.Itoa(c.Y)
 }
