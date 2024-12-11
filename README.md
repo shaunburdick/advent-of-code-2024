@@ -14,6 +14,7 @@ Each day will be setup as a separate folder.
 -   [Day 5](/day-5/) - Print Queue
 -   [Day 6](/day-6/) - Guard Gallivant
 -   [Day 7](/day-7/) - Bridge Repair
+-   [Day 8](/day-8/) - Resonant Collinearity
 
 ## Environment Setup
 
